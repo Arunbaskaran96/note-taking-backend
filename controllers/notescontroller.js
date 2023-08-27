@@ -40,9 +40,9 @@ router.get("/note/:id",async(req,res)=>{
     }
 })
 
-router.put("/:id",async(req,res)=>{
+router.put("/updatenote/:id",async(req,res)=>{
     try {
-        const filterNote=await notesmodel.findByIdAndUpdate(req.params.id,{
+        const filterNote=await notesmodel.findOneAndUpdate({_id:req.params.id},{
             $set:req.body
         })
         res.status(200).json({message:"updated"})
